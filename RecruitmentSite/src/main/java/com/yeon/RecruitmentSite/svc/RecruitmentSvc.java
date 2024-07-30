@@ -25,4 +25,13 @@ public class RecruitmentSvc {
 		if(jobOpeningList != null) return jobOpeningList;
 		return null;
 	}
+	
+	public JobOpeningDTO recruitmentDetail(int jobOpeningId) {
+		
+		JobOpeningDTO findJobOpening = JobOpeningDTO
+				.toDto(jobOpeningRepo.findById(jobOpeningId).get());
+		
+		if(findJobOpening != null) return findJobOpening;
+		return null;
+	}
 }

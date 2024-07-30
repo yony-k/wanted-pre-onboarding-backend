@@ -21,7 +21,7 @@ import lombok.ToString;
 public class JobOpeningDTO {
 	
 	private int jobOpeningId;
-	private int companyId;
+	private CompanyDTO company;
 	private String position;
 	private int salary;
 	private String contents;
@@ -32,7 +32,7 @@ public class JobOpeningDTO {
 		
 		return JobOpeningDTO.builder()
 				.jobOpeningId(jobOpening.getJobOpeningId())
-				.companyId(jobOpening.getCompany().getCompanyId())
+				.company(CompanyDTO.toDto(jobOpening.getCompany()))
 				.position(jobOpening.getPosition())
 				.salary(jobOpening.getSalary())
 				.contents(jobOpening.getContents())
@@ -43,7 +43,7 @@ public class JobOpeningDTO {
 	public JobOpening toEntity() {
 		return JobOpening.builder()
 				.jobOpeningId(jobOpeningId)
-				.company(Company.builder().companyId(companyId).build())
+				.company(Company.builder().companyId(company.getCompanyId()).build())
 				.position(position)
 				.salary(salary)
 				.contents(contents)

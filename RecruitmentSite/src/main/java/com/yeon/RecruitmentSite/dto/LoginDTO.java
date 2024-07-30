@@ -6,9 +6,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 
-@Builder
+@Setter
 @Getter
 @ToString
 @NoArgsConstructor
@@ -17,4 +18,6 @@ public class LoginDTO {
 	
 	private String userId;
 	private String userPwd;
+	
+	//builder 때문에 바인딩 안됐음
 }

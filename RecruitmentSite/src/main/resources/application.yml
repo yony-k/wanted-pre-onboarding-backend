@@ -2,7 +2,8 @@ server:
   port: '8088'
 
 file:
-  upload-dir: 'D:\github\wanted-pre-onboarding-backend\RecruitmentSite\src\main\resources\static\ckUploads\'
+  upload-dir: '[ckEditor에서 업로드하는 이미지가 저장될 경로를 지정해주세요.]'
+  # 예시 : 'D:\github\wanted-pre-onboarding-backend\RecruitmentSite\src\main\resources\static\ckUploads\'
 
 spring:
   datasource:

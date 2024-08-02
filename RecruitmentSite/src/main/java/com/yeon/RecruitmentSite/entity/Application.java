@@ -22,11 +22,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 @Entity
-@Table(name = "application_list")
-public class ApplicationList {
+@Table(name = "application")
+public class Application {
 	
 	@Id
-	@Column(name = "application_list_id")
+	@Column(name = "application_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int applicationListId;
 	

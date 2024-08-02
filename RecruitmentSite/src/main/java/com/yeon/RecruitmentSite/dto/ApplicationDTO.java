@@ -1,6 +1,6 @@
 package com.yeon.RecruitmentSite.dto;
 
-import com.yeon.RecruitmentSite.entity.ApplicationList;
+import com.yeon.RecruitmentSite.entity.Application;
 import com.yeon.RecruitmentSite.entity.JobOpening;
 import com.yeon.RecruitmentSite.entity.User;
 
@@ -8,33 +8,35 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 
 @Builder
 @Getter
+@Setter
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class ApplicationListDTO {
+public class ApplicationDTO {
 
-	private int applicationListId;
+	private int applicationId;
 	private String userId;
 	private int jobOpeningId;
 	
-	public static ApplicationListDTO toDto(ApplicationList applicationList) {
+	public static ApplicationDTO toDto(Application applicationList) {
         if (applicationList == null) return null;
         
-        return ApplicationListDTO.builder()
-        		.applicationListId(applicationList.getApplicationListId())
+        return ApplicationDTO.builder()
+        		.applicationId(applicationList.getApplicationListId())
         		.userId(applicationList.getUser().getUserId())
         		.jobOpeningId(applicationList.getJobOpening().getJobOpeningId())
         		.build();
     }
 	
-	public ApplicationList toEntity() {
+	public Application toEntity() {
 		
-		return ApplicationList.builder()
-				.applicationListId(applicationListId)
+		return Application.builder()
+				.applicationListId(applicationId)
 				.user(User.builder().userId(userId).build())
 				.jobOpening(JobOpening.builder().jobOpeningId(jobOpeningId).build())
 				.build();

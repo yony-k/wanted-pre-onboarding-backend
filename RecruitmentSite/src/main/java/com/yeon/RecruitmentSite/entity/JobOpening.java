@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.hibernate.annotations.ManyToAny;
 
-import com.yeon.RecruitmentSite.converter.JsonConverter;
+import com.yeon.RecruitmentSite.JsonConverter;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
@@ -40,7 +40,7 @@ public class JobOpening {
 	private Company company;
 	
 	private String position;
-	private int salary;
+	private int compensation;
 	private String contents;
 	
 	@Convert(converter = JsonConverter.class)

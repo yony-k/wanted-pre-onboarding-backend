@@ -36,11 +36,14 @@ public class User {
 	@Column(name = "user_pwd")
 	private String userPwd;
 	
+	@Column(name="user_type")
+	private String userType;
+	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "company_id",referencedColumnName = "company_id")
 	@Nullable
 	private Company company;
 	
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<ApplicationList> applicationLists;
+	private List<Application> applicationLists;
 }

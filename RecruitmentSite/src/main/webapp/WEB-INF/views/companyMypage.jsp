@@ -7,30 +7,23 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>채용공고 목록</title>
+<title>회사 마이페이지</title>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
-
-//검색어 검증
-function validateSearch() {
-    const keyword = $('input[name="keyword"]').val().trim();
-    if (keyword === '') {
-        alert('검색어를 입력해 주세요.');
-        return false;
-    }
-    return true;
+//수정버튼 클릭
+function edit(jobOpeningId) {
+	if(confirm('수정하시겠습니까?')) {
+		location.href="/recruitment/edit/" + jobOpeningId;
+	}
 }
-
 </script>
 
 <style type="text/css">
-	
-	/* 검색 블럭 스타일 */
-	#serch {
+	#companyButton_container {
 		display: flex;
-		justify-content: center;
+		flex-direction: row-reverse;
 		margin-bottom: 20px;
 	}
 	
@@ -42,24 +35,15 @@ function validateSearch() {
 <%@ include file="header.jsp"%>
 
 <div class="body_container">
-	<div id="serch">
-		<form action="/serch" method="get" onsubmit="return validateSearch()">
-			<select id="category" name="category">
-				<option value="all" selected="selected">전체</option>
-			    <option value="position">채용포지션</option>
-			    <option value="contents">채용내용</option>
-			    <option value="skill">사용스킬</option>
-			</select>
-			<input type="text" id="keyword" name="keyword">
-			<button type="submit">검색</button>
-		</form>
+	<div id="companyButton_container">
+		<a href="/recruitment/add"><button type="button">채용공고 작성하기</button></a>
 	</div>
 	
 	<div>
 		<c:choose>
-			<c:when test="${not empty jobOpeningList}">
+			<c:when test="${not empty listByCompany}">
 				<ul>
-				  <c:forEach items="${jobOpeningList}" var="jobOpening">
+				  <c:forEach items="${listByCompany}" var="jobOpening">
 						<li class="jobOpening_container">
 							<div class="data_container">
 								<div class="company_container">
@@ -82,14 +66,19 @@ function validateSearch() {
 							</div>
 							
 							<div class="button_container">
-								<a href="/recruitmentDetail/${jobOpening.jobOpeningId}">상세</a>
+								<div>
+									<a href="/recruitmentDetail/${jobOpening.jobOpeningId}">상세</a>
+								</div>
+								<div>
+									<button type="button" onclick="edit(${jobOpening.jobOpeningId})">수정하기</button>
+								</div>
 							</div>
 						</li>
 					</c:forEach>
 				</ul>
 			</c:when>
 			<c:otherwise>
-				<p>채용공고가 0건 입니다.</p>
+				<p>등록한 채용공고가 0건 입니다.</p>
 			</c:otherwise>
 		</c:choose>
 	</div>

@@ -23,7 +23,7 @@ public class JobOpeningDTO {
 	private int jobOpeningId;
 	private CompanyDTO company;
 	private String position;
-	private int salary;
+	private int compensation;
 	private String contents;
 	private List<String> skill;
 	
@@ -34,7 +34,7 @@ public class JobOpeningDTO {
 				.jobOpeningId(jobOpening.getJobOpeningId())
 				.company(CompanyDTO.toDto(jobOpening.getCompany()))
 				.position(jobOpening.getPosition())
-				.salary(jobOpening.getSalary())
+				.compensation(jobOpening.getCompensation())
 				.contents(jobOpening.getContents())
 				.skill(jobOpening.getSkill())
 				.build();
@@ -45,7 +45,7 @@ public class JobOpeningDTO {
 				.jobOpeningId(jobOpeningId)
 				.company(Company.builder().companyId(company.getCompanyId()).build())
 				.position(position)
-				.salary(salary)
+				.compensation(compensation)
 				.contents(contents)
 				.skill(skill)
 				.build();

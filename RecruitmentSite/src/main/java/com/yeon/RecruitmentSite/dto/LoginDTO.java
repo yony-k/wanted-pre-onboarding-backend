@@ -19,5 +19,4 @@ public class LoginDTO {
 	private String userId;
 	private String userPwd;
 	
-	//builder 때문에 바인딩 안됐음
 }

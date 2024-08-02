@@ -22,7 +22,8 @@ public class UserDTO {
 	private String userId;
 	private String userName;
 	private String userPwd;
-	private int compnay_id;
+	private int companyId;
+	private String userType;
 	
 	public static UserDTO toDto(User user) {
 		
@@ -30,16 +31,17 @@ public class UserDTO {
 				.userId(user.getUserId())
 				.userName(user.getUserName())
 				.userPwd(user.getUserPwd())
-				.compnay_id(Optional.ofNullable(user.getCompany())
+				.companyId(Optional.ofNullable(user.getCompany())
                         .map(Company::getCompanyId)
                         .orElse(0)) 
+				.userType(user.getUserType())
 				.build();
 	}
 	
 	public User toEntity() {
 		
-		Company company = (compnay_id > 0) 
-				? Company.builder().companyId(compnay_id).build() 
+		Company company = (companyId != 0) 
+				? Company.builder().companyId(companyId).build() 
 				: null;
 		
 		return User.builder()
@@ -47,6 +49,7 @@ public class UserDTO {
 				.userName(userName)
 				.userPwd(userPwd)
 				.company(company)
+				.userType(userType)
 				.build();
 	}
 

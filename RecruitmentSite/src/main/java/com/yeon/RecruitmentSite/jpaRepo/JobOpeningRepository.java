@@ -14,6 +14,18 @@ public interface JobOpeningRepository extends JpaRepository<JobOpening, Integer>
 	List<JobOpening> findByPositionContaining(String keyword);
 	List<JobOpening> findByContentsContaining(String keyword);
 	
-	@Query(value = "SELECT * FROM job_opening j WHERE JSON_CONTAINS(j.skill, :skill, '$')", nativeQuery = true)
-	List<JobOpening> findBySkillContaining(@Param("skill") String keyword);
+	 @Query(value = "SELECT * FROM job_opening j "
+	 		+ "WHERE JSON_SEARCH(j.skill, 'one', %:keyword%) "
+	 		+ "IS NOT NULL", 
+			 nativeQuery = true)
+    List<JobOpening> findBySkillContaining(@Param("keyword") String keyword);
+
+	 @Query(value = "SELECT * FROM job_opening j WHERE "
+	 		+ "j.position LIKE %:keyword% OR "
+	 		+ "j.contents LIKE %:keyword% OR "
+	 		+ "JSON_SEARCH(j.skill, 'one', %:keyword%) IS NOT NULL", 
+	 		nativeQuery = true)
+    List<JobOpening> findByAll(@Param("keyword") String keyword);
+	 
+	 List<JobOpening> findByJobOpeningIdIn(List<Integer> jobOpeningIds);
 }

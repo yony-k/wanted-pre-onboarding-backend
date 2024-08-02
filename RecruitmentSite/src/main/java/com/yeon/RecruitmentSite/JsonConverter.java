@@ -1,4 +1,4 @@
-package com.yeon.RecruitmentSite.converter;
+package com.yeon.RecruitmentSite;
 
 import java.io.IOException;
 import java.util.Collections;
@@ -13,6 +13,7 @@ import jakarta.persistence.Converter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
+//DB의 JSON 컬럼을 위한 JSON 변환기
 @Slf4j
 @Converter(autoApply = true)
 @RequiredArgsConstructor
@@ -20,6 +21,7 @@ public class JsonConverter implements AttributeConverter<List<String>, String>{
 
 	private final ObjectMapper objectMapper = new ObjectMapper();
 	
+	//JSON 컬럼 값으로 변환
 	@Override
 	public String convertToDatabaseColumn(List<String> attribute) {
 		
@@ -33,6 +35,7 @@ public class JsonConverter implements AttributeConverter<List<String>, String>{
 		}
 	}
 
+	//JSON 컬럼 값을 List타입 값으로 변환
 	@Override
 	public List<String> convertToEntityAttribute(String dbData) {
 		

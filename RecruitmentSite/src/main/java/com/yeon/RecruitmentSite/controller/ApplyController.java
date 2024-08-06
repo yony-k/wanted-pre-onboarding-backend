@@ -60,7 +60,6 @@ public class ApplyController {
 				return ResponseEntity.ok
 						(Map.of("success", true, "message", "지원이 성공적으로 완료되었습니다."));
 			} else {
-				System.out.println("어떤게 돌아가는거임?1");
 				return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
 						.body(Map.of("success", false, "message", "지원 과정에서 오류가 발생했습니다."));
 			}
